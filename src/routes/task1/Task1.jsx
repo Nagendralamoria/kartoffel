@@ -49,7 +49,10 @@ function Task1() {
 
     if (medicineEditing !== null) {
       const updatedMedicine = [...addedMedicine];
-      updatedMedicine[medicineEditing] = medicineDetails;
+      updatedMedicine[medicineEditing] = {
+        ...medicineDetails,
+        beforeFood: beforeFoodData,
+      };
       setAddedMedicine(updatedMedicine);
       setMedicineEditing(null);
       setMedicineDetails(initialValues);
@@ -240,9 +243,6 @@ function Task1() {
               <th scope="col" className="px-6 py-3">
                 Action
               </th>
-              <th scope="col" className="px-6 py-3">
-                <span className="sr-only">Edit</span>
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -269,7 +269,7 @@ function Task1() {
                     {items.durationHrs} hr {items.durationMin} min{" "}
                     {items.beforeFood ? <p>Before Food</p> : <p>After Food</p>}
                   </td>
-                  <td className="px-6 py-4 flex gap-2 text-right">
+                  <td className="px-6 py-4 flex justify-evenly text-right">
                     <button
                       className="text-white bg-blue-500 px-4 py-2 rounded-lg"
                       onClick={() => handleEdit(index)}
